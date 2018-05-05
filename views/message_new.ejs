@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New Secret</title>
+</head>
+<body>
+    <p><a href="/logout">logout</a></p>
+    <h2>Input your secret</h2>
+    <form action="/messages" method="post">
+        <input type="text" name="contents" id="">
+        <button type="submit">Submit</button>
+    </form>
+    <hr />
+    <h2>Secrets: </h2>
+    <hr />
+    <ul>
+    <% messages.forEach( msg => { %>
+        <li>
+            <a href="/messages/<%= msg._id %>"><%= msg.contents %></a>
+            <% if ( user_id == msg.author) { %>
+                <form action="/messages/delete/<%= msg._id %>" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            <% } %>
+        </li>
+    <% }) %>
+    </ul>
+   
+</body>
+</html>
